@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>图形样式 - HTML自定义标注</title>
+  <style type="text/css">
+    html,body{margin:0px;height:100%;width:100%}
+    .container{width:100%;height:100%}
+    .text_marker{font:30px bold sans-serif;color:#34495e;text-shadow:2px 0 white;width:160px}
+    .life{display:block;height:6px;width:30px;background:#00AA44;border:1px solid #fff;}
+  </style>
+  <link rel="stylesheet" href="./maptalks.css">
+  <script type="text/javascript" src="./maptalks.js"></script>
+  <body>
+
+    <div id="map" class="container"></div>
+    <script>
+
+      var map = new maptalks.Map('map', {
+        center: [-0.113049,51.49856],
+        zoom: 14,
+        baseLayer: new maptalks.TileLayer('base', {
+          urlTemplate: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          subdomains: ['a','b','c'],
+          attribution: '&copy; <a href="http://www.osm.org" target="_blank">OpenStreetMap</a> contributors'
+        })
+      });
+
+      var marker = new maptalks.ui.UIMarker([-0.113049,51.49856], {
+        // 'draggable'     : true,
+        'single'        : false,
+        'content'       : '<div class="text_marker">HTML Marker</div>'
+      });
+      marker.addTo(map).show();
+
+      var marker2 = new maptalks.ui.UIMarker([-0.110049,51.49656], {
+        // 'draggable'     : true,
+        'pitch'         : true,
+        'single'        : false,
+        'content'       : '<img src="http://maptalks.org/examples/cn/style/line-marker/raw/plane.png"><span class="life"></span>'
+      });
+      marker2.addTo(map).show();
+
+      var img = new Image();
+      img.src = 'http://maptalks.org/examples/cn/style/line-marker/raw/plane.png';
+      var marker3 = new maptalks.ui.UIMarker([-0.106049,51.49656], {
+        // 'draggable'     : true,
+        'pitch'         : true,
+        'single'        : false,
+        'content'       : img
+      });
+      marker3.addTo(map).show();
+
+    </script>
+  </body>
+</html>
